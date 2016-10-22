@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Signup</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="signupCreds" (ngSubmit)="signup(signupCreds.value)">
+        <ion-item>
+          <ion-label><ion-icon name="person"></ion-icon></ion-label>
+          <ion-input (change)="checkUsername(username.value)" type="text" formControlName="username" placeholder="User Name"></ion-input>
+        </ion-item>
+        <p *ngIf="username.hasError('required') && username.touched" color="danger">Username is required</p>
+        <p *ngIf="username.touched && !usernameIsValid" color="danger">User is invalid or taken</p>
+        <p *ngIf="username.touched && usernameIsValid" color="secondary"> User is OK</p>
+        
+        <ion-item>
+          <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+        <p *ngIf="!password.valid && password.touched" color="danger">Password is not met standards</p>
+        <p *ngIf="password.valid && username.touched" color="secondary"> Password is good</p>
+
+        <ion-item>
+          <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+          <ion-input type="email" placeholder="Your email" formControlName="email"></ion-input>
+        </ion-item>
+        <p *ngIf="email.hasError('required') && email.touched" color="danger">Email is required</p>
+        
+        <div padding>
+          <button ion-button full [disabled]="!usernameIsValid || !signupCreds.valid" type="submit" color="secondary">Sign up</button>
+        </div>
+  </form>
+</ion-content>
