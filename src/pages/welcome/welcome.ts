@@ -16,6 +16,7 @@ export class WelcomePage {
     setTimeout(() => {
       this.authService.loggedin().then(isLoggedin => {
         if (isLoggedin) {
+          this.authService.setAuth();
           this.navCtrl.push(HomePage);
         }
         else {

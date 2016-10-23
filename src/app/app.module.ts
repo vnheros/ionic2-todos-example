@@ -1,3 +1,4 @@
+import { NewTodoPage } from './../pages/new-todo/new-todo';
 import { WelcomePage } from './../pages/welcome/welcome';
 import { Todos } from './../providers/todos';
 import { Auth } from './../providers/auth';
@@ -15,7 +16,8 @@ import { Storage } from '@ionic/storage';
     WelcomePage,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    NewTodoPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +28,8 @@ import { Storage } from '@ionic/storage';
     WelcomePage,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    NewTodoPage
   ],
   providers: [Storage, Auth, Todos]
 })

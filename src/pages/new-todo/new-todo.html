@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>New a Todo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Task:</ion-label>
+      <ion-input [(ngModel)]="todo.task" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Deadline</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="todo.deadline"></ion-datetime>
+      </ion-item>
+    <ion-item>
+      <ion-label>Public:</ion-label>
+      <ion-checkbox [(ngModel)]="todo.public"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <button ion-button clear (click)="save()">Save</button>
+</ion-content>

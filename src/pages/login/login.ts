@@ -29,7 +29,7 @@ export class LoginPage {
 
     this.authService.login(credentials).then((result) => {
       this.loading.dismiss();
-      console.log(result);
+      //console.log(result);
       this.navCtrl.setRoot(HomePage);
     }, (err) => {
       this.loading.dismiss();

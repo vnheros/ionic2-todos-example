@@ -21,7 +21,6 @@ export class Auth {
 	loggedin() {
 		return this.storage.get('id_token').then((value) => {
 			this.token = value;
-			console.log(this.token);
 			return this.token && !this.jwtHelper.isTokenExpired(this.token, null);
 		}, (error) => {
 			return false;
@@ -75,8 +74,14 @@ export class Auth {
 	}
 
 	authSuccess(token) {
+		this.token = token;
+		this.setAuth();
 		this.storage.set('id_token', token);
-		this.user = this.jwtHelper.decodeToken(token).username;
+	}
+
+	setAuth() {
+		this.user = this.jwtHelper.decodeToken(this.token).username;
+		this.headers.append('Authorization', 'Bearer ' + this.token);
 	}
 
 	logout() {

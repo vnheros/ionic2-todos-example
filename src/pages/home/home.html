@@ -1,14 +1,36 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+ <ion-navbar hideBackButton color="primary">
+  <ion-title>
+    Todos List
+  </ion-title>
+  <ion-buttons start>
+    <button ion-button icon-only (click)="logout()"><ion-icon name="power"></ion-icon></button>
+  </ion-buttons>
+ </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-list *ngIf="todoService.todos" no-lines>
+    <ion-item-sliding *ngFor="let todo of todoService.todos">
+      <ion-item>
+        <ion-row>
+      	<ion-col width-70>{{todo.task}}</ion-col>
+        <ion-col width-30 class="deadline">{{todo.deadline |  date: 'dd/MM/yyyy'}}</ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteTodo(todo)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <p *ngIf="!todoService.todos"> No todos </p>
 </ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab mini color="secondary" (click)="newTodo()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
